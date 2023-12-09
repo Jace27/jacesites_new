@@ -1,0 +1,33 @@
+@media (max-width: 576px) {
+    .navbar .btn {
+        margin-top: 0.5rem;
+    }
+}
+@media (min-width: 576px) {
+    .navbar .btn {
+        margin-top: 0rem;
+    }
+}
+#signin_form * {
+    font-size: 0.75em;
+    margin: 0.25em;
+    max-width: 140px;
+}
+#signin_form :not(input[type=button]) {
+    padding: .125em .25em;
+}
+
+.quote { display: flex; }
+.quote > div { margin: .5em auto; display: flex; padding-bottom: 3px; }
+.quote p { display: inline-block; line-height: normal; }
+.quote p:nth-child(2) {
+    max-width: 900px;
+    margin: auto;
+}
+.quote p:nth-child(1), .quote p:nth-child(3) {
+    font-size: 3em;
+    color: rgba(0, 0, 0, 0.3);
+    margin: 0 10px;
+}
+.quote p:nth-child(1) { vertical-align: top; margin-top: -3px; }
+.quote p:nth-child(3) { margin-top: auto; }

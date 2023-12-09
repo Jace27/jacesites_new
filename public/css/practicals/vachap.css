@@ -1,0 +1,148 @@
+.container-fluid {
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+.book {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.container-fluid a {
+    text-decoration: none;
+}
+.container-fluid h1, .container-fluid h2, .container-fluid h3 {
+    text-align: center;
+}
+.container-fluid img {
+    border: #999 1px solid;
+    max-width: 80%;
+}
+.container-fluid .cover {
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+.container-fluid blockquote {
+    border: #999 1px solid;
+    padding: 10px;
+}
+.container-fluid .lev1 {
+    margin-left: 30px;
+}
+.container-fluid .lev2 {
+    margin-left: 60px;
+}
+.container-fluid .lev3 {
+    margin-left: 90px;
+}
+.container-fluid .lev4 {
+    margin-left: 120px;
+}
+.container-fluid .post_start {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+.container-fluid .posts {
+    clear: both;
+}
+.container-fluid .post {
+    color: #222;
+    letter-spacing: .03px;
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    border-top: #bbb 1px solid;
+}
+.container-fluid .text_post {
+    float: left;
+    padding: 14px 1.5% 50px 5%;
+    width: calc(73% - 11px);
+    position: relative;
+    border-left: 1px dashed;
+}
+.container-fluid .author {
+    float: left;
+    padding: 5px;
+    width: calc(27% - 12px);
+    position: relative;
+    text-align: center;
+    border-left: 1px dashed;
+    border-right: 1px dashed;
+}
+.container-fluid .member {
+    float: none;
+    color: #3498db;
+    font-weight: bold;
+    padding: 5px;
+}
+.container-fluid .date {
+    padding: 5px 0px;
+    font-size: 0.7rem;
+}
+.container-fluid .leader {
+    float: none;
+    color: #9b59b6;
+    font-weight: bold;
+    padding: 5px;
+}
+.container-fluid .outsider {
+    float: none;
+    color: #1fa67a;
+    font-weight: bold;
+    padding: 5px;
+}
+.container-fluid .smile {
+    border: 0px;
+}
+.container-fluid .ava {
+    border-radius: 100px;
+    max-width: 75px;
+    max-height: 75px;
+}
+.container-fluid .ref {
+    text-decoration: underline;
+    color: blue;
+}
+.container-fluid .header {
+    clear: both;
+}
+.container-fluid .user_group {
+    color: #666;
+    clear: both;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container-fluid .to-emirida {
+    position: fixed;
+    display: block;
+    right: 3%;
+    top: 3%;
+    padding: 5px 10px;
+    border: 1px solid deepskyblue;
+    border-radius: 3px;
+    background-color: skyblue;
+    color: #333;
+}
+
+
+@media (max-width: 760px) {
+    .container-fluid .post {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .container-fluid .text_post {
+        float: none;
+        width: auto;
+        border: none;
+    }
+    .container-fluid .author {
+        display: inline-flex;
+        float: left;
+        width: 100%;
+        border: none;
+    }
+    .container-fluid .ava {
+        max-height: 30px;
+    }
+}

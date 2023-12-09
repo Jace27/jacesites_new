@@ -1,0 +1,7 @@
+#images { display: flex; flex-direction: row; flex-wrap: wrap; }
+#images img { max-width: 100px; max-height: 100px; margin: .25em; cursor: pointer; }
+#images img:hover { background-color: red; opacity: .5; }
+.tags { display: flex; flex-direction: row; flex-wrap: wrap; }
+.tags > * { margin: 5px; }
+.tag-style { display: flex; flex-direction: row; background-color: #007bff; border-radius: 14px; font-size: 14px; color: white; padding: .25rem; }
+.tag img { cursor: pointer; }

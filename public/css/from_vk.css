@@ -1,0 +1,224 @@
+img {
+    max-width: calc(100% - 60px);
+    min-width:0px;
+}
+.emoji,.emoji_css {
+    width: 16px;
+    height: 16px;
+    border: none;
+    vertical-align: -3px;
+    margin: 0 1px;
+    display: inline-block;
+}
+.emoji2,.emoji_css2 {
+    width: 23px;
+    height: 23px;
+    border: none;
+    vertical-align: -6px;
+    margin: 0 1px;
+    display: inline-block;
+}
+.emoji_css {
+    background: url(https://vk.com/images/im_emoji.png?9) no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
+    .emoji_css {
+        background-image: url(https://vk.com/images/im_emoji_2x.png?9);
+        background-size: 16px 544px;
+    }
+}
+h4 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+hr {
+    height: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+.messages {
+    width: auto;
+    text-align: left;
+}
+.msg_item {
+    overflow: hidden;
+}
+.from, .msg_body, .att_head, .attacments, .attacment, .fwd {
+    margin-left:60px;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.msg_item {
+    margin-top: 5px;
+}
+.upic {
+    float: left;
+}
+.upic img {
+    vertical-align: top;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.round_upic .upic img {
+    border-radius: 50%;
+}
+.upic2 {
+    float: left;
+}
+.upic2 img {
+    vertical-align: top;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+}
+.round_upic .upic2 img {
+    border-radius: 20%;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+a:active, a:hover {
+    outline: 0;
+}
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: underline;
+}
+a.unworked:focus, a.unworked:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+.att_head {
+    color: #777;
+}
+.att_ico {
+    float: left;
+    width: 11px;
+    height: 11px;
+    margin: 3px 3px 2px;
+    background-image: url('http://vk.com/images/icons/mono_iconset.gif');
+}
+.att_photo {
+    background-position: 0 -30px;
+}
+.att_audio {
+    background-position: 0 -222px;
+}
+.att_video {
+    background-position: 0 -75px;
+}
+.att_doc {
+    background-position: 0 -280px;
+}
+.att_wall,.att_fwd {
+    background-position: 0 -194px;
+}
+.att_gift {
+    background-position: 0 -105px;
+}
+.att_sticker {
+    background-position: 0 -362px;
+    width: 12px;
+    height: 12px;
+}
+.att_link {
+    background-position: 0 -237px;
+}
+.attb_link a span {
+    color: #777777;
+}
+.att_geo {
+    background-position: 0 -165px;
+}
+.fwd {
+    border: 2px solid #C3D1E0;
+    border-width: 0 0 0 2px;
+}
+img[width="128"] {
+    width: 128px;
+}
+img.sticker1 {
+    width: 128px;
+}
+@media (max-width: 799px) {
+    img.sticker1 {
+        width: 128px;
+    }
+    img[width="128"] {
+        width: 128px;
+    }
+    img {
+        width: 100%
+    }
+    img[width="128"] {
+        width: 128px;
+    }
+    img.sticker1 {
+        width: 128px;
+    }
+    .messages {
+        margin: 0 20px;
+    }
+    .from {
+        padding-left: 3px;
+    }
+    .msg_body {
+        margin-left: 60px;
+        padding-left: 3px;
+    }
+    .att_head {
+        padding-left: 3px;
+    }
+    .fwd {
+        padding-left: 3px;
+        margin-left: 50px;
+    }
+    a[target=_blank] {
+        display: none;
+    }
+}
+@media (min-width: 800px){
+    img.sticker1 {
+        width: 128px;
+    }
+    img[width="128"] {
+        width: 128px;
+    }
+    img {
+        max-width: 800px;
+    }
+    img[width="128"] {
+        width: 128px;
+    }
+    img.sticker1 {
+        width: 128px;
+    }
+    .fwd {
+        margin-left: 85px;
+    }
+    .from, .msg_body, .att_head, .attacments, .attacment, .fwd {
+        margin-left: 60px;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+img[width="128"] {
+    width: 128px;
+}
+img.sticker1 {
+    width: 128px;
+}

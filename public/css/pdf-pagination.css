@@ -1,0 +1,22 @@
+.container-fluid {
+    overflow: hidden;
+}
+.page-change-btns {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 1em;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+}
+.page-change-btns > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.btn-page-next {
+    margin-right: 15px;
+}

@@ -1,0 +1,266 @@
+._3emE9--dark-theme .-S-tR--ff-downloader {
+	background: rgba(30,30,30,.93);
+	border: 1px solid rgba(82,82,82,.54);
+	box-shadow: 0 4px 7px rgba(30,30,30,.55);
+	color: #fff;
+}
+._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn {
+	background: #3d4b52;
+}
+._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover {
+	background: #131415;
+}
+._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer {
+	background: rgba(30,30,30,.93);
+}
+._2mDEx--white-theme .-S-tR--ff-downloader {
+	background: #fff;
+	border: 1px solid rgba(82,82,82,.54);
+	box-shadow: 0 4px 7px rgba(30,30,30,.55);
+	color: #314c75;
+}
+._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header {
+	font-weight: 700;
+}
+._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice {
+	border: 0;
+	color: rgba(0,0,0,.88);
+}
+._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer {
+	background: #fff;
+}
+.-S-tR--ff-downloader {
+	display: block;
+	overflow: hidden;
+	position: fixed;
+	bottom: 20px;
+	right: 7.1%;
+	width: 330px;
+	height: 180px;
+	background: rgba(30,30,30,.93);
+	border-radius: 2px;
+	color: #fff;
+	z-index: 99999999;
+	border: 1px solid rgba(82,82,82,.54);
+	box-shadow: 0 4px 7px rgba(30,30,30,.55);
+	transition: .5s;
+}
+.-S-tR--ff-downloader._3M7UQ--minimize {
+	height: 62px;
+}
+.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header {
+	display: none;
+}
+.-S-tR--ff-downloader ._6_Mtt--header {
+	padding: 10px;
+	font-size: 17px;
+	font-family: sans-serif;
+}
+.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn {
+	float: right;
+	background: #f1ecec;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	padding: 2px;
+	margin-top: -10px;
+	cursor: pointer;
+}
+.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover {
+	background: #e2dede;
+}
+.-S-tR--ff-downloader ._13XQ2--error {
+	color: red;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 19px;
+}
+.-S-tR--ff-downloader ._2dFLA--container {
+	position: relative;
+	height: 100%;
+}
+.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info {
+	padding: 6px 15px 0;
+	font-family: sans-serif;
+}
+.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div {
+	margin-bottom: 5px;
+	width: 100%;
+	overflow: hidden;
+}
+.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice {
+	margin-top: 21px;
+	font-size: 11px;
+}
+.-S-tR--ff-downloader ._10vpG--footer {
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	font-weight: 700;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader {
+	-webkit-animation: n0BD1--rotation 3.5s linear forwards;
+	animation: n0BD1--rotation 3.5s linear forwards;
+	position: absolute;
+	top: -120px;
+	left: calc(50% - 35px);
+	border-radius: 50%;
+	border: 5px solid #fff;
+	border-top-color: #a29bfe;
+	height: 70px;
+	width: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar {
+	width: 100%;
+	height: 18px;
+	background: #dfe6e9;
+	border-radius: 5px;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar {
+	height: 100%;
+	background: #8bc34a;
+	border-radius: 5px;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status {
+	margin-top: 10px;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state {
+	float: left;
+	font-size: .9em;
+	letter-spacing: 1pt;
+	text-transform: uppercase;
+	width: 100px;
+	height: 20px;
+	position: relative;
+}
+.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage {
+	float: right;
+}
+
+
+
+/* Print Style Sheet
+---------------------------------------- */
+
+
+/* Lots still TODO here! */
+/* Display smilies (Bug #47265) */
+.content img {
+    display: inline;
+}
+
+/* Container for the main body */
+.wrap {
+    margin: 0 2em;
+}
+
+.wrap p { font-size: 85%; }
+.wrap .copyright { font-size: 75%; }
+.wrap .page-number { float:right; width: auto; text-align: right; font-size: 75%; }
+
+.wrap h1, .wrap h2, .wrap h3, .wrap h1 a, .wrap h2 a, .wrap h3 a {
+    font-family: "Trebuchet MS",georgia,Verdana,Sans-serif;
+    color: #000000;
+    background: none;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.wrap h1 { font-size: 20pt; }
+.wrap h2 { font-size: 16pt; margin-top: 1em; }
+.wrap h3 { font-size: 14pt; margin-top: 1em; }
+
+.wrap .content {
+    font-size: 11pt;
+    line-height: 14pt;
+    margin-bottom: 1em;
+    font-family: "Lucida Grande", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/* CSS2 Print tip from: http://www.alistapart.com/articles/goingtoprint/ */
+.postbody a:link, .postbody a:visited, .postbody a:hover, .postbody a:active {
+    text-decoration: underline;
+    padding: 0.1em 0.2em;
+    margin: -0.1em -0.2em;
+    color: #666;
+    background: none;
+    font-size: 100%;
+}
+
+html>body .postbody a:link:after, html>body .postbody a:visited:after {
+    content: " (" attr(href) ") ";
+    font-size: 90%;
+    text-decoration: none;
+}
+
+.wrap hr {
+    height: 1px;
+    background-color: #999999;
+    border-width: 0;
+}
+
+.wrap .author {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    margin-bottom: 0.6em;
+}
+
+.wrap .date {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    float: right;
+    position: relative;
+    text-align: right;
+    font-size: 75%;
+}
+
+/* Dont want to print url for names or titles in content area */
+.postbody .author a:link, .postbody .author a:visited,
+html>body .postbody .author a:link:after,
+html>body .postbody .author a:visited:after,
+.postquote .quote-by a:link, .postquote .quote-by a:visited,
+html>body .postquote .quote-by a:link:after,
+html>body .postquote .quote-by a:visited:after,
+html>body .postbody h1 a:link:after, html>body .postbody h2 a:link:after {
+    text-decoration: none;
+    content: "";
+}
+
+/* Poster profile */
+.postprofile { display: none; }
+.grip-show { display:none; }
+
+/* Quote */
+.postquote, blockquote {
+    font-size: 85%;
+    margin: 1em 18% 1em 4%;
+    padding: 0.5em;
+    position: relative;
+    line-height: 1.5em;
+    border: 1px #999999 solid;
+}
+
+.postquote img { display: none; }
+.postquote span { display: block; }
+.postquote span .postquote { font-size: 100%; }
+.quote-by, blockquote cite {
+    color: black;
+    display : block;
+    font-weight: bold;
+}
+
+/* List */
+.wrap ol, .wrap ul {
+    margin-left: 15pt
+}
+
+/* Misc page elements */
+div.spacer { clear: both; }
+
+/* Accessibility tweaks: Mozilla.org */
+.skip_link { display: none; }
+
+.codebox p { display: none; }
