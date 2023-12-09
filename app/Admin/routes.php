@@ -15,5 +15,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('quotes', \App\Admin\Controllers\QuotesController::class);
+    $router->resource('site-pages', \App\Admin\Controllers\SitePagesController::class);
 
 });
