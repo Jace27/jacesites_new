@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { return view('index'); });
+Route::get('/about', function () { return view('about'); });
+Route::get('/about/terms', function () { return view('terms'); });
 
 Route::get('/login', function () { return view('login'); })->name('login');
 Route::get('/profile', function () { return view('profile'); })->middleware('auth')->name('profile');
