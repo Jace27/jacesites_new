@@ -8,6 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 /**
  * Class MediaManager.
@@ -70,7 +71,7 @@ class MediaManager extends Extension
 
         $this->storage = Storage::disk($disk);
 
-        if (!$this->storage->getDriver()->getAdapter() instanceof Local) {
+        if (!$this->storage->getAdapter() instanceof LocalFilesystemAdapter) {
             Handler::error('Error', '[laravel-admin-ext/media-manager] only works for local storage.');
         }
     }
@@ -88,38 +89,15 @@ class MediaManager extends Extension
         $directories = $this->storage->directories($this->path);
 
         return $this->formatDirectories($directories)
-                ->merge($this->formatFiles($files))
-                ->sort(function ($item) {
-                    return $item['name'];
-                })->all();
-    }
-
-    /**
-     * Get full path for a giving fiel path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function getFullPath($path)
-    {
-        $fullPath = $this->storage->getDriver()->getAdapter()->applyPathPrefix($path);
-        if (strstr($fullPath, '..')) {
-            throw new \Exception('Incorrect path');
-        }
-
-        return $fullPath;
+            ->merge($this->formatFiles($files))
+            ->sort(function ($item) {
+                return $item['name'];
+            })->all();
     }
 
     public function download()
     {
-        $fullPath = $this->getFullPath($this->path);
-
-        if (File::isFile($fullPath)) {
-            return response()->download($fullPath);
-        }
-
-        return response('', 404);
+        $this->storage->download($this->path);
     }
 
     public function delete($path)
@@ -127,9 +105,7 @@ class MediaManager extends Extension
         $paths = is_array($path) ? $path : func_get_args();
 
         foreach ($paths as $path) {
-            $fullPath = $this->getFullPath($path);
-
-            if (is_file($fullPath)) {
+            if ($this->storage->fileExists($path)) {
                 $this->storage->delete($path);
             } else {
                 $this->storage->deleteDirectory($path);
@@ -177,9 +153,7 @@ class MediaManager extends Extension
 
     public function exists()
     {
-        $path = $this->getFullPath($this->path);
-
-        return file_exists($path);
+        return $this->storage->exists($this->path);
     }
 
     /**
@@ -266,7 +240,7 @@ class MediaManager extends Extension
         switch ($this->detectFileType($file)) {
             case 'image':
 
-                if ($this->storage->getDriver()->getConfig()->has('url')) {
+                if ($this->storage->getConfig()['url']) {
                     $url = $this->storage->url($file);
                     $preview = "<span class=\"file-icon has-img\"><img src=\"$url\" alt=\"Attachment\"></span>";
                 } else {
@@ -324,7 +298,7 @@ class MediaManager extends Extension
 
     public function getFilesize($file)
     {
-        $bytes = filesize($this->getFullPath($file));
+        $bytes = $this->storage->size($file);
 
         $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
 
@@ -337,7 +311,7 @@ class MediaManager extends Extension
 
     public function getFileChangeTime($file)
     {
-        $time = filectime($this->getFullPath($file));
+        $time = $this->storage->lastModified($file);
 
         return date('Y-m-d H:i:s', $time);
     }
