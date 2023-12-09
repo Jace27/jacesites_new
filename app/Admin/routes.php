@@ -14,6 +14,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->resource('users', \App\Admin\Controllers\UserController::class);
     $router->resource('quotes', \App\Admin\Controllers\QuotesController::class);
     $router->resource('site-pages', \App\Admin\Controllers\SitePagesController::class);
     $router->resource('title-events', \App\Admin\Controllers\TitleEventsController::class);

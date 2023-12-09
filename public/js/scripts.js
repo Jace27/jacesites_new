@@ -56,12 +56,13 @@ function sleep(milliseconds) {
 
 $(document).ready(function () {
     if (typeof session === 'undefined') {
+        return;
         let session_id = localStorage.getItem('jacesites_data.session_id');
         if (typeof session_id === 'string') {
             let data = new FormData();
             data.append('session_key', session_id);
             ajax({
-                url: '/api/signin',
+                url: '/api/login',
                 method: 'post',
                 data: data,
                 success: function (data) {
