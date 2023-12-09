@@ -19,3 +19,6 @@ Route::get('/about/terms', function () { return view('terms'); });
 
 Route::get('/login', function () { return view('login'); })->name('login');
 Route::get('/profile', function () { return view('profile'); })->middleware('auth')->name('profile');
+
+Route::get('/tools/randomizer', function () { return view('tools.randomizer'); });
+Route::get('/tools/minipaint', function () { return view('tools.minipaint'); });
