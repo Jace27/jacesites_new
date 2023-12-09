@@ -134,16 +134,17 @@ class MigrationCreator
      *
      * @param  string  $stub
      * @param  string|null  $table
+     * @param  string  $name
      * @return string
      */
-    protected function populateStub($stub, $table)
+    protected function populateStub($stub, $table, $name = 'DummyTable')
     {
         // Here we will replace the table place-holders with the table specified by
         // the developer, which is useful for quickly creating a tables creation
         // or update migration from the console instead of typing it manually.
         if (! is_null($table)) {
             $stub = str_replace(
-                ['DummyTable', '{{ table }}', '{{table}}'],
+                [$name, '{{ table }}', '{{table}}'],
                 $table, $stub
             );
         }

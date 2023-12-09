@@ -38,7 +38,7 @@ class MigrationCreator extends BaseMigrationCreator
 
         $this->files->put($path, $this->populateStub($name, $stub, $table));
 
-        $this->firePostCreateHooks($table);
+        $this->firePostCreateHooks($table, $path);
 
         return $path;
     }
@@ -52,7 +52,7 @@ class MigrationCreator extends BaseMigrationCreator
      *
      * @return mixed
      */
-    protected function populateStub($name, $stub, $table)
+    protected function populateStub($stub, $table, $name = 'DummyTable')
     {
         return str_replace(
             ['DummyClass', 'DummyTable', 'DummyStructure'],
