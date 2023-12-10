@@ -1011,9 +1011,9 @@ if (! function_exists('view')) {
      */
     function view($view = null, $data = [], $mergeData = [])
     {
-        if (!\Illuminate\Support\Facades\View::exists($view))
+        if (!is_null($view) && !\Illuminate\Support\Facades\View::exists($view))
             return abort(404);
-        
+
         $factory = app(ViewFactory::class);
 
         if (func_num_args() === 0) {
