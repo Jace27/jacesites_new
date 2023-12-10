@@ -36,7 +36,7 @@
     @php $user = \Illuminate\Support\Facades\Auth::user(); @endphp
     @if(is_null($slug))
         <div class="text-block mt-3 d-flex flex-row flex-wrap">
-            @foreach(\App\Models\Books::query()->get() as $book)
+            @foreach(\App\Models\Books::query()->orderBy('ord')->get() as $book)
                 <div class="p-2 book @if($book->private && is_null($user)) private-book @endif"
                      data-id="{{ $book->slug }}"
                      @if($book->private && is_null($user)) alt="Зарегистрируйтесь, чтобы получить доступ к этой книге"
