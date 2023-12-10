@@ -82,7 +82,7 @@ $(document).ready(function () {
         }
     }
 
-    $('.btn-download').click(function () {
+    $('.btn-download', null).click(function () {
         let link = document.createElement('a');
         link.target = '_blank';
         link.href = this.dataset.fileLink;
@@ -91,4 +91,6 @@ $(document).ready(function () {
         link.click();
         $(link).remove();
     });
+
+    Events.init();
 });

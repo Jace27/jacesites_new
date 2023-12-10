@@ -75,3 +75,23 @@ body * { font-family: Ubuntu; }
     max-width: 50px;
     max-height: 50px;
 }
+
+.event-popup {
+    position: fixed;
+    bottom: -10rem;
+    right: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+}
+.event-popup > * {
+    padding: 0.5rem;
+}
+.event-popup__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+}
+.event-popup__header__time {
+    color: #aaa;
+}

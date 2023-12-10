@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'authenticate']);
 Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+
+Route::post('/events/public', [\App\Http\Controllers\EventController::class, 'publicEvent']);

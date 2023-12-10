@@ -40,5 +40,6 @@
         </div>
     </div>
     @include('includes.controls.message')
+    @include('includes.footer')
 </body>
 </html>

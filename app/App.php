@@ -44,4 +44,18 @@ class App
     {
         return auth()->user();
     }
+
+    public static function htmlIncludeAssets()
+    {
+        $dir = $_SERVER['DOCUMENT_ROOT'].'/build/assets';
+        foreach (glob($dir.'/*.*') as $filename) {
+            $file = pathinfo($filename, PATHINFO_BASENAME);
+            if (str_ends_with($file, '.js')) {
+                echo '<script type="text/javascript" src="/build/assets/'.$file.'?v='.rand().'"></script>';
+            }
+            if (str_ends_with($file, '.css')) {
+                echo '<link rel="stylesheet" href="/build/assets/'.$file.'?v='.rand().'">';
+            }
+        }
+    }
 }
