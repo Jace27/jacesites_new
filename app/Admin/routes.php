@@ -18,5 +18,7 @@ Route::group([
     $router->resource('quotes', \App\Admin\Controllers\QuotesController::class);
     $router->resource('site-pages', \App\Admin\Controllers\SitePagesController::class);
     $router->resource('title-events', \App\Admin\Controllers\TitleEventsController::class);
+    $router->resource('kk-notes', \App\Admin\Controllers\KkNotesController::class);
+    $router->resource('kk-notes-redirects', \App\Admin\Controllers\KkNotesRedirectsController::class);
 
 });

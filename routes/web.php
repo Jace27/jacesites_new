@@ -25,6 +25,21 @@ Route::get('/save/{save}', function (string $save) { return view('saves.'.$save)
 Route::get('/practicals', function () { return view('practicals'); })->name('practicals');
 Route::get('/practical/{practical}', function (string $practical) { return view('practicals.'.$practical); });
 
+Route::get('/kk_notes', function () { return view('kk_notes', ['slug' => null]); })->name('kk_notes');
+Route::get('/kk_notes/{slug}', function (string $slug) {
+    if (!is_null($redirect = \App\Models\KkNotesRedirects::whereOldLink($slug)->first())) {
+        return redirect('/kk_notes/'.$redirect->new_link);
+    }
+    if (!\App\Models\KkNotes::whereSlug($slug)->exists()) {
+        file_put_contents(
+            $_SERVER['DOCUMENT_ROOT'].'/not_found.txt',
+            file_get_contents($_SERVER['DOCUMENT_ROOT'].'/not_found.txt').PHP_EOL.$slug
+        );
+        return abort(404);
+    }
+    return view('kk_notes', ['slug' => $slug]);
+});
+
 Route::get('/login', function () { return redirect('/'); })->name('login');
 Route::get('/profile', function () { return view('profile'); })->middleware('auth')->name('profile');
 
