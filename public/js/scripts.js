@@ -55,8 +55,7 @@ function sleep(milliseconds) {
 }
 
 $(document).ready(function () {
-    if (typeof session === 'undefined') {
-        return;
+    if (typeof session === 'undefined' && false) {
         let session_id = localStorage.getItem('jacesites_data.session_id');
         if (typeof session_id === 'string') {
             let data = new FormData();

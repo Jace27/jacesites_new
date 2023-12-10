@@ -19,9 +19,10 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/about/terms', function () { return view('terms'); });
 
 Route::get('/saves', function () { return view('saves'); })->name('saves');
-Route::get('/save/{save}', function (string $save) {
-    return View::exists('saves.'.$save) ? view('saves.'.$save) : abort(404);
-});
+Route::get('/save/{save}', function (string $save) { return view('saves.'.$save); });
+
+Route::get('/practicals', function () { return view('practicals'); })->name('practicals');
+Route::get('/practical/{practical}', function (string $practical) { return view('practicals.'.$practical); });
 
 Route::get('/login', function () { return view('login'); })->name('login');
 Route::get('/profile', function () { return view('profile'); })->middleware('auth')->name('profile');
