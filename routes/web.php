@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\View;
 */
 
 Route::get('/', function () { return view('index'); });
-Route::get('/about', function () { return view('about'); });
-Route::get('/about/terms', function () { return view('terms'); });
+Route::get('/about', function () { return view('about'); })->name('about');
+Route::get('/about/terms', function () { return view('terms'); })->name('terms');
 Route::get('/pmcalcs', function () { return view('pmcalcs'); });
 
 Route::get('/articles', function () { return view('articles', ['slug' => null]); })->name('articles');
