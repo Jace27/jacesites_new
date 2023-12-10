@@ -21,5 +21,6 @@ Route::group([
     $router->resource('kk-notes', \App\Admin\Controllers\KkNotesController::class);
     $router->resource('kk-notes-redirects', \App\Admin\Controllers\KkNotesRedirectsController::class);
     $router->resource('books', \App\Admin\Controllers\BooksController::class);
+    $router->resource('articles', \App\Admin\Controllers\ArticlesController::class);
 
 });

@@ -19,6 +19,9 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/about/terms', function () { return view('terms'); });
 Route::get('/pmcalcs', function () { return view('pmcalcs'); });
 
+Route::get('/articles', function () { return view('articles', ['slug' => null]); })->name('articles');
+Route::get('/article/{slug}', function (string $slug) { return view('articles', ['slug' => $slug]); });
+
 Route::get('/library', function () { return view('library', ['slug' => null]); })->name('library');
 Route::get('/library/{slug}', function (string $slug) { return view('library', ['slug' => $slug]); });
 
