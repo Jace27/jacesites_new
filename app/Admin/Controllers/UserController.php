@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\RestoreAction;
 use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -32,6 +33,16 @@ class UserController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->column('deleted_at', __('Deleted at'));
+
+        $grid->actions(function (Grid\Displayers\DropdownActions $actions) {
+            if ($actions->row->deleted_at) {
+                $actions->add(new RestoreAction());
+            }
+        });
+
+        $grid->filter(function (Grid\Filter $filter) {
+            $filter->scope('trashed', __('Recycle Bin'))->onlyTrashed();
+        });
 
         return $grid;
     }
