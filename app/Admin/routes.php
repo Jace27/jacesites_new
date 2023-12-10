@@ -22,5 +22,7 @@ Route::group([
     $router->resource('kk-notes-redirects', \App\Admin\Controllers\KkNotesRedirectsController::class);
     $router->resource('books', \App\Admin\Controllers\BooksController::class);
     $router->resource('articles', \App\Admin\Controllers\ArticlesController::class);
+    $router->resource('dreams-locations-types', \App\Admin\Controllers\DreamsLocationsTypesController::class);
+    $router->resource('dreams-locations', \App\Admin\Controllers\DreamsLocationsController::class);
 
 });

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\View;
 Route::get('/', function () { return view('index'); });
 Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/about/terms', function () { return view('terms'); })->name('terms');
+Route::get('/dreammap', function () { return view('dreammap'); })->name('dreammap');
 Route::get('/challenges', function () { return view('challenges'); })->name('challenges');
 Route::get('/competitions', function () { return view('competitions'); })->name('competitions');
 Route::get('/pmcalcs', function () { return view('pmcalcs'); })->name('pmcalcs');
