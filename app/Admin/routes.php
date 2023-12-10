@@ -20,5 +20,6 @@ Route::group([
     $router->resource('title-events', \App\Admin\Controllers\TitleEventsController::class);
     $router->resource('kk-notes', \App\Admin\Controllers\KkNotesController::class);
     $router->resource('kk-notes-redirects', \App\Admin\Controllers\KkNotesRedirectsController::class);
+    $router->resource('books', \App\Admin\Controllers\BooksController::class);
 
 });
