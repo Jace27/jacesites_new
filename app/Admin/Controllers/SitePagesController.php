@@ -29,7 +29,7 @@ class SitePagesController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('link', __('Link'));
         $grid->column('name', __('Name'));
-        $grid->column('show_in_menu', __('Show in menu'));
+        $grid->column('show_in_menu', __('Show in menu'))->switch();
         $grid->column('priority', __('Priority'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
