@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="/css/menu.css?v={{ time() }}">
 <link rel="stylesheet" href="/css/style.css?v={{ time() }}">
 <link rel="stylesheet" href="/css/search.css">
+<script>
+    let session = {!! auth()->user() ? '"'.auth()->user()->name.'"' : 'null' !!};
+</script>
 <script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
