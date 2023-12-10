@@ -67,7 +67,7 @@ class SitePagesController extends AdminController
     {
         $form = new Form(new SitePages());
 
-        $form->url('link', __('Link'));
+        $form->text('link', __('Link'));
         $form->text('name', __('Name'));
         $form->switch('show_in_menu', __('Show in menu'));
         $form->number('priority', __('Priority'))->default(100);
