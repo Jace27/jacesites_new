@@ -460,6 +460,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'laravel-admin-ext/ckeditor' => array(
+            'pretty_version' => 'v1.0.1',
+            'version' => '1.0.1.0',
+            'reference' => '33b0be1f489f923617417f8135a198d984a6b12f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel-admin-ext/ckeditor',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'laravel-admin-ext/config' => array(
             'pretty_version' => 'v1.1',
             'version' => '1.1.0.0',

@@ -13,6 +13,7 @@ use Encore\Admin\Form\Layout\Layout;
 use Encore\Admin\Form\Row;
 use Encore\Admin\Form\Tab;
 use Encore\Admin\Traits\ShouldSnakeAttributes;
+use Encore\CKEditor\Editor;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class Form.
+ * 
+ * @method Editor ckeditor(string $column, string $label = '')
  */
 class Form implements Renderable
 {

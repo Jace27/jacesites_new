@@ -160,6 +160,7 @@ class ComposerStaticInitd87990fa7bdb4aa5076a224f30c09a48
         ),
         'E' => 
         array (
+            'Encore\\CKEditor\\' => 16,
             'Encore\\Admin\\Scheduling\\' => 24,
             'Encore\\Admin\\Media\\' => 19,
             'Encore\\Admin\\Helpers\\' => 21,
@@ -514,6 +515,10 @@ class ComposerStaticInitd87990fa7bdb4aa5076a224f30c09a48
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
+        'Encore\\CKEditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src',
+        ),
         'Encore\\Admin\\Scheduling\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel-admin-ext/scheduling/src',
@@ -635,11 +640,18 @@ class ComposerStaticInitd87990fa7bdb4aa5076a224f30c09a48
 
     public static $classMap = array (
         'App\\Admin\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AuthController.php',
-        'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
+        'App\\Admin\\Controllers\\KkNotesController' => __DIR__ . '/../..' . '/app/Admin/Controllers/KkNotesController.php',
+        'App\\Admin\\Controllers\\KkNotesRedirectsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/KkNotesRedirectsController.php',
+        'App\\Admin\\Controllers\\QuotesController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QuotesController.php',
+        'App\\Admin\\Controllers\\SitePagesController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SitePagesController.php',
+        'App\\Admin\\Controllers\\TitleEventsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/TitleEventsController.php',
+        'App\\Admin\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserController.php',
+        'App\\App' => __DIR__ . '/../..' . '/app/App.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -650,7 +662,11 @@ class ComposerStaticInitd87990fa7bdb4aa5076a224f30c09a48
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\KkNotes' => __DIR__ . '/../..' . '/app/Models/KkNotes.php',
+        'App\\Models\\KkNotesRedirects' => __DIR__ . '/../..' . '/app/Models/KkNotesRedirects.php',
         'App\\Models\\Quotes' => __DIR__ . '/../..' . '/app/Models/Quotes.php',
+        'App\\Models\\SitePages' => __DIR__ . '/../..' . '/app/Models/SitePages.php',
+        'App\\Models\\TitleEvents' => __DIR__ . '/../..' . '/app/Models/TitleEvents.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -1707,6 +1723,9 @@ class ComposerStaticInitd87990fa7bdb4aa5076a224f30c09a48
         'Encore\\Admin\\Widgets\\Tab' => __DIR__ . '/..' . '/encore/laravel-admin/src/Widgets/Tab.php',
         'Encore\\Admin\\Widgets\\Table' => __DIR__ . '/..' . '/encore/laravel-admin/src/Widgets/Table.php',
         'Encore\\Admin\\Widgets\\Widget' => __DIR__ . '/..' . '/encore/laravel-admin/src/Widgets/Widget.php',
+        'Encore\\CKEditor\\CKEditor' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/CKEditor.php',
+        'Encore\\CKEditor\\CKEditorServiceProvider' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/CKEditorServiceProvider.php',
+        'Encore\\CKEditor\\Editor' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/Editor.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Inn.php',
