@@ -2,32 +2,28 @@ window.Users = {
     customEventName: 'jacesites-user-event',
     online: {},
     init: () => {
+        if (session === null) return;
         window.addEventListener(Events.customEventName, (e) => {
             switch (e.detail.event.type) {
                 case 'user-request':
-                    if (session === null || e.detail.event.sender === session) return;
-                    Users.handleRequest(e.detail);
-                    window.dispatchEvent(new CustomEvent(Users.customEventName, { detail: e.detail }));
-                    break;
                 case 'user-response':
-                    if (session === null || e.detail.event.sender === session) return;
+                    if (e.detail.event.receiver !== session) return;
                     window.dispatchEvent(new CustomEvent(Users.customEventName, { detail: e.detail }));
+            }
+        });
+        window.addEventListener(Users.customEventName, (e) => {
+            if (e.detail.event.type != 'user-request') return;
+            switch (e.detail.event.request) {
+                case 'is-online':
+                    Events.send({
+                        type: 'user-response',
+                        sender: session,
+                        receiver: e.detail.event.sender,
+                        response: true
+                    });
                     break;
             }
         });
-    },
-    handleRequest: (e) => {
-        if (session === null || e.event.receiver !== session) return;
-        switch (e.event.request) {
-            case 'is-online':
-                Events.send({
-                    type: 'user-response',
-                    sender: session,
-                    receiver: e.event.sender,
-                    response: true
-                });
-                break;
-        }
     },
     request: (user, request, callback) => {
         if (session === null) return;

@@ -32,17 +32,15 @@ window.rsa = {
         });
     },
 
-    getRequestKey: (user, callback) => {
+    requestKey: (user, callback) => {
         if (typeof rsa.knownPublicKeys[user] === 'string') {
             callback(rsa.knownPublicKeys[user]);
             return;
         }
         Users.request(user, 'public-key', (response) => {
             if (response === false) {
-                if (typeof rsa.knownPublicKeys[user] !== 'string') {
-                    rsa.knownPublicKeys[user] = null;
-                }
-                callback(rsa.knownPublicKeys[user]);
+                rsa.knownPublicKeys[user] = null;
+                callback(null);
             } else {
                 rsa.knownPublicKeys[response.event.sender] = response.event.response;
                 callback(response.event.response);
@@ -51,7 +49,7 @@ window.rsa = {
     },
     sendEncryptedMessage: (user, text) => {
         if (session === null) return;
-        rsa.getRequestKey(user, (key) => {
+        rsa.requestKey(user, (key) => {
             if (typeof key === 'string') {
                 Events.send({
                     type: 'encrypted-message',
