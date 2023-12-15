@@ -3,10 +3,69 @@ window.rsa = {
         private: null,
         public: null
     },
-    init: function () {
-        this.generateKeys();
+    knownPublicKeys: {},
+
+    init: () => {
+        if (session === null) return;
+        rsa.generateKeys();
+        window.addEventListener(Users.customEventName, (e) => {
+            if (e.detail.event.type != 'user-request') return;
+            if (e.detail.event.receiver != session) return;
+            switch (e.detail.event.request) {
+                case 'public-key':
+                    Events.send({
+                        type: 'user-response',
+                        sender: session,
+                        receiver: e.detail.event.sender,
+                        response: rsa.keys.public
+                    });
+                    break;
+            }
+        });
+        window.addEventListener(Events.customEventName, (e) => {
+            switch (e.detail.event.type) {
+                case 'encrypted-message':
+                    if (e.detail.event.receiver != session) break;
+                    console.log(rsa.decrypt(e.detail.event.text, rsa.keys.private));
+                    break;
+            }
+        });
     },
-    arrayBufferToBase64: function (arrayBuffer) {
+
+    getRequestKey: (user, callback) => {
+        if (typeof rsa.knownPublicKeys[user] === 'string') {
+            callback(rsa.knownPublicKeys[user]);
+            return;
+        }
+        Users.request(user, 'public-key', (response) => {
+            if (response === false) {
+                if (typeof rsa.knownPublicKeys[user] !== 'string') {
+                    rsa.knownPublicKeys[user] = null;
+                }
+                callback(rsa.knownPublicKeys[user]);
+            } else {
+                rsa.knownPublicKeys[response.event.sender] = response.event.response;
+                callback(response.event.response);
+            }
+        });
+    },
+    sendEncryptedMessage: (user, text) => {
+        if (session === null) return;
+        rsa.getRequestKey(user, (key) => {
+            if (typeof key === 'string') {
+                Events.send({
+                    type: 'encrypted-message',
+                    receiver: user,
+                    sender: session,
+                    text: rsa.encrypt(text, key)
+                });
+            } else {
+                console.error('cannot get encryption key');
+            }
+        });
+    },
+
+    arrayBufferToBase64: (arrayBuffer) => {
         let byteArray = new Uint8Array(arrayBuffer);
         let byteString = '';
         for (let i=0; i < byteArray.byteLength; i++) {
@@ -14,7 +73,7 @@ window.rsa = {
         }
         return window.btoa(byteString);
     },
-    addNewLines: function (str) {
+    addNewLines: (str) => {
         let finalString = '';
         while (str.length > 0) {
             finalString += str.substring(0, 64) + '\n';
@@ -22,15 +81,15 @@ window.rsa = {
         }
         return finalString;
     },
-    toPem: function (privateKey) {
-        let b64 = this.addNewLines(this.arrayBufferToBase64(privateKey));
+    toPem: (privateKey) => {
+        let b64 = rsa.addNewLines(rsa.arrayBufferToBase64(privateKey));
         return "-----BEGIN PRIVATE KEY-----\n" + b64 + "-----END PRIVATE KEY-----";
     },
-    toPub: function (privateKey) {
-        let b64 = this.addNewLines(this.arrayBufferToBase64(privateKey));
+    toPub: (privateKey) => {
+        let b64 = rsa.addNewLines(rsa.arrayBufferToBase64(privateKey));
         return "-----BEGIN PUBLIC KEY-----\n" + b64 + "-----END PUBLIC KEY-----";
     },
-    generateKeys: function () {
+    generateKeys: () => {
         // Let's generate the key pair first
         window.crypto.subtle.generateKey(
             {
@@ -41,7 +100,7 @@ window.rsa = {
             },
             true,
             ["encrypt", "decrypt"]
-        ).then(function (keyPair) {
+        ).then((keyPair) => {
             /**
              * now when the key pair is generated we are going
              * to export it from the keypair object in pkcs8
@@ -49,29 +108,29 @@ window.rsa = {
             window.crypto.subtle.exportKey(
                 "pkcs8",
                 keyPair.privateKey
-            ).then(function (exportedPrivateKey) {
+            ).then((exportedPrivateKey) => {
                 // converting exported private key to PEM format
                 rsa.keys.private = rsa.toPem(exportedPrivateKey);
-            }).catch(function (err) {
+            }).catch((err) => {
                 console.log(err);
             });
 
             window.crypto.subtle.exportKey(
                 "spki",
                 keyPair.publicKey
-            ).then(function (exportedPublicKey) {
+            ).then((exportedPublicKey) => {
                 rsa.keys.public = rsa.toPub(exportedPublicKey);
-            }).catch(function (err) {
+            }).catch((err) => {
                 console.log(err);
             });
         });
     },
-    encrypt: function (text, publicKey) {
+    encrypt: (text, publicKey) => {
         let encrypter = new JSEncrypt();
         encrypter.setPublicKey(publicKey);
         return encrypter.encrypt(text);
     },
-    decrypt: function (text, privateKey) {
+    decrypt: (text, privateKey) => {
         let decrypter = new JSEncrypt();
         decrypter.setPrivateKey(privateKey);
         return decrypter.decrypt(text);

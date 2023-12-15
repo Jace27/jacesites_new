@@ -5,19 +5,19 @@ window.Users = {
         window.addEventListener(Events.customEventName, (e) => {
             switch (e.detail.event.type) {
                 case 'user-request':
-                    if (typeof session === 'undefined' || e.detail.event.sender === session) return;
+                    if (session === null || e.detail.event.sender === session) return;
                     Users.handleRequest(e.detail);
                     window.dispatchEvent(new CustomEvent(Users.customEventName, { detail: e.detail }));
                     break;
                 case 'user-response':
-                    if (typeof session === 'undefined' || e.detail.event.sender === session) return;
+                    if (session === null || e.detail.event.sender === session) return;
                     window.dispatchEvent(new CustomEvent(Users.customEventName, { detail: e.detail }));
                     break;
             }
         });
     },
     handleRequest: (e) => {
-        if (typeof session === 'undefined' || e.event.receiver !== session) return;
+        if (session === null || e.event.receiver !== session) return;
         switch (e.event.request) {
             case 'is-online':
                 Events.send({
@@ -30,7 +30,7 @@ window.Users = {
         }
     },
     request: (user, request, callback) => {
-        if (typeof session === 'undefined') return;
+        if (session === null) return;
 
         let timeout = setTimeout(() => {
             window.removeEventListener(Users.customEventName, handler);
