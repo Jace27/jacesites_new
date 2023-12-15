@@ -1,45 +1,41 @@
-let Events = {
+window.Events = {
+    customEventName: 'jacesites-public-event',
     events: [],
-    handle: function (event, timestamp) {
-        let time = this.time_format(timestamp);
-        switch (event.type) {
-            case 'user-login':
-                this.display(event.name+' в сети', null, time);
-                break;
-            case 'user-logout':
-                this.display(event.name+' вышел из сети', null, time);
-                break;
-        }
-    },
-    init: function () {
+    init: () => {
         Echo.channel('public-events')
             .listen('PublicEvent', (e) => {
+                console.log(e);
                 try {
                     e.event = JSON.parse(e.event);
-                    this.add(e);
-                    this.handle(e.event, e.timestamp);
-                    console.log(e);
+                    Events.add(e);
+                    window.dispatchEvent(new CustomEvent(Events.customEventName, { detail: e }));
                 } catch (ex) {
                     console.log([e,ex]);
                 }
             });
+        window.addEventListener(Events.customEventName, (e) => {
+            let time = Formatter.time_format(e.detail.timestamp);
+            switch (e.detail.event.type) {
+                case 'user-login':
+                    Events.display(e.detail.event.name+' в сети', null, time);
+                    break;
+                case 'user-logout':
+                    Events.display(e.detail.event.name+' вышел из сети', null, time);
+                    break;
+            }
+        });
     },
-    send: function (event) {
-        this.add(event);
+    send: (event) => {
+        if (typeof event !== 'string')
+            event = JSON.stringify(event);
+        Events.add(event);
         axios.post('/api/events/public', {event: event});
     },
-    add: function (event) {
-        this.events.push(event);
+    add: (event) => {
+        Events.events.push(event);
     },
-    time_format: function (timestamp) {
-        let time = new Date(timestamp * 1000);
-        let hours = '0' + time.getHours();
-        let minutes = '0' + time.getMinutes();
-        let seconds = '0' + time.getSeconds();
-        return hours.substring(hours.length-2) + ':' + minutes.substring(minutes.length-2) + ':' + seconds.substring(seconds.length-2);
-    },
-    display: function (title, text = null, time = null, background = 'white') {
-        $('.event-popup').each(function (i, e) {
+    display: (title, text = null, time = null, timeout = 5000, background = 'white', callback = null) => {
+        $('.event-popup').each((i, e) => {
             $(e).animate({
                 bottom: '+='+($(e).height()+10),
             });
@@ -54,14 +50,19 @@ let Events = {
         $('body').append(popup);
         popup.animate({
             bottom: 10,
-        }, 1000, function () {
-            setTimeout(function () {
+        }, 1000, () => {
+            let func = () => {
                 popup.animate({
                     opacity: 0,
-                }, 1000, function () {
+                }, 1000, () => {
                     popup.remove();
                 });
-            }, 5000);
+            };
+            if (timeout !== null) {
+                setTimeout(func, timeout);
+            } else {
+                callback(func);
+            }
         });
     }
 }

@@ -21,9 +21,15 @@ class PublicEvent implements ShouldBroadcast
 
     public function broadcastWith()
     {
+        $user = auth()->user();
         return [
             'event' => $this->event,
             'timestamp' => time(),
+            'user' => [
+                'id' => $user?->id,
+                'name' => $user?->name,
+                'avatar' => $user?->getAvatarUrl(),
+            ],
         ];
     }
 
