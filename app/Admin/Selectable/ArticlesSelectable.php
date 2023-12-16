@@ -8,7 +8,7 @@ use Encore\Admin\Grid\Selectable;
 
 class ArticlesSelectable extends Selectable
 {
-    public $model =Articles::class;
+    public $model = Articles::class;
 
     public function make()
     {

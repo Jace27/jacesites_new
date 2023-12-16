@@ -20,3 +20,4 @@
 <script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/helpers.js?v={{ time() }}"></script>

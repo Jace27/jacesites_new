@@ -39,6 +39,9 @@ class Events extends Model
 {
     use HasFactory;
 
+    const CHANGED_PASSWORD = -5;
+    const CHANGED_PROFILE = -5;
+    const CHANGED_AVATAR = -4;
     const VISIT_PAGE = -3;
     const USER_LOGOUT = -2;
     const USER_LOGIN = -1;

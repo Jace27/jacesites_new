@@ -24,5 +24,7 @@ Route::group([
     $router->resource('articles', \App\Admin\Controllers\ArticlesController::class);
     $router->resource('dreams-locations-types', \App\Admin\Controllers\DreamsLocationsTypesController::class);
     $router->resource('dreams-locations', \App\Admin\Controllers\DreamsLocationsController::class);
+    $router->resource('option-pages', \App\Admin\Controllers\OptionPagesController::class);
+    $router->resource('options', \App\Admin\Controllers\OptionsController::class);
 
 });

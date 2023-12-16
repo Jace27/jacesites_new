@@ -22,6 +22,9 @@ Route::get('/challenges', function () { return view('challenges'); })->name('cha
 Route::get('/competitions', function () { return view('competitions'); })->name('competitions');
 Route::get('/pmcalcs', function () { return view('pmcalcs'); })->name('pmcalcs');
 
+Route::get('/profile', function () { return view('profile', ['requested_user' => null]); })->name('profile');
+Route::get('/profile/{user}', function (string $user) { return view('profile', ['requested_user' => $user]); });
+
 Route::get('/articles', function () { return view('articles', ['slug' => null]); })->name('articles');
 Route::get('/article/{slug}', function (string $slug) { return view('articles', ['slug' => $slug]); });
 
