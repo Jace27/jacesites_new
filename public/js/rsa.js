@@ -5,9 +5,9 @@ window.rsa = {
     },
     knownPublicKeys: {},
 
-    init: () => {
+    init: (regenerateKeys = false) => {
         if (session === null) return;
-        rsa.generateKeys();
+        rsa.setKeys(regenerateKeys);
         window.addEventListener(Users.customEventName, (e) => {
             if (e.detail.event.type != 'user-request') return;
             if (e.detail.event.receiver != session) return;
@@ -32,6 +32,14 @@ window.rsa = {
         });
     },
 
+    setKeys: (regenerateKeys = false) => {
+        if (typeof localStorage.getItem('jacesites.rsa.keys') === 'string' && !regenerateKeys) {
+            rsa.keys = JSON.parse(localStorage.getItem('jacesites.rsa.keys'));
+        } else {
+            rsa.generateKeys();
+            localStorage.setItem('jacesites.rsa.keys', JSON.stringify(rsa.keys));
+        }
+    },
     requestKey: (user, callback) => {
         if (typeof rsa.knownPublicKeys[user] === 'string') {
             callback(rsa.knownPublicKeys[user]);
