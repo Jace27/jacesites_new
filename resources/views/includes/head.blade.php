@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/css/search.css">
 <script>
     const session = {!! auth()->user() ? '"'.auth()->user()->name.'"' : 'null' !!};
+    const session_id = {!! auth()->user()?->id ?? 'null' !!};
 </script>
 <script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>

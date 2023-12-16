@@ -2,13 +2,13 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PublicEvent implements ShouldBroadcast
+class UserEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -42,7 +42,7 @@ class PublicEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('public-events'),
+            new PrivateChannel('user.'.$this->userId),
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\PublicEvent;
+use App\Models\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,10 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials, $request->get('remember_me', false))) {
             $request->session()->regenerate();
-            event(new PublicEvent(json_encode([
+            Events::fire(Events::USER_LOGIN, [
                 'type' => 'user-login',
                 'name' => $credentials['name']
-            ], JSON_UNESCAPED_UNICODE)));
+            ], PublicEvent::class, null, true);
             return ['status' => 'success', 'user' => $request->user()];
         }
 
@@ -30,10 +31,10 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        event(new PublicEvent(json_encode([
+        Events::fire(Events::USER_LOGOUT, [
             'type' => 'user-logout',
-            'name' => Auth::user()?->name,
-        ], JSON_UNESCAPED_UNICODE)));
+            'name' => \auth()->user()?->name,
+        ]);
         \auth()->logout();
         return redirect('/');
     }

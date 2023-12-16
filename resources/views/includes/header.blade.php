@@ -23,7 +23,7 @@
                             data: data,
                             success: function (data) {
                                 if (data.status == 'success') {
-                                    localStorage.setItem('jacesites_data.session_id', data.session_key);
+                                    localStorage.setItem('jacesites.request_unseen_events', 'true');
                                     window.location.reload();
                                 } else if (data.message != null) {
                                     show_message('Ошибка', data.message);

@@ -21,3 +21,5 @@ Route::post('/login', [\App\Http\Controllers\UserController::class, 'authenticat
 Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
 Route::post('/events/public', [\App\Http\Controllers\EventController::class, 'publicEvent']);
+Route::post('/events/user', [\App\Http\Controllers\EventController::class, 'userEvent']);
+Route::get('/events/get-unseen-important', [\App\Http\Controllers\EventController::class, 'getUnseenImportantEvents']);

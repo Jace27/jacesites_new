@@ -76,10 +76,15 @@ body * { font-family: Ubuntu; }
     max-height: 50px;
 }
 
-.event-popup {
+
+
+.event-popup-wrapper {
     position: fixed;
-    bottom: -10rem;
+    top: 100%;
     right: 10px;
+}
+.event-popup {
+    margin-bottom: 10px;
     width: 300px;
     border-radius: 5px;
     border: 1px solid #dee2e6;

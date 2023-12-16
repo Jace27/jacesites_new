@@ -30,7 +30,7 @@
             <div class="col-12 col-md-9">
                 @yield('content')
             </div>
-            <div class="col-12 col-md-3" id="js-sidebar">
+            <div class="col-12 col-md-3" style="z-index: 1;" id="js-sidebar">
                 <div class="text-block mt-3 mr-1">
                     @include('includes.menu')
                     <hr>

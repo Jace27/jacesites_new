@@ -9,23 +9,20 @@ window.rsa = {
         if (session === null) return;
         rsa.setKeys(regenerateKeys);
         window.addEventListener(Users.customEventName, (e) => {
-            if (e.detail.event.type != 'user-request') return;
-            if (e.detail.event.receiver != session) return;
-            switch (e.detail.event.request) {
-                case 'public-key':
-                    Events.send({
-                        type: 'user-response',
-                        sender: session,
-                        receiver: e.detail.event.sender,
-                        response: rsa.keys.public
-                    });
-                    break;
-            }
-        });
-        window.addEventListener(Events.customEventName, (e) => {
             switch (e.detail.event.type) {
+                case 'user-request':
+                    switch (e.detail.event.request) {
+                        case 'public-key':
+                            Users.send({
+                                type: 'user-response',
+                                sender: session,
+                                receiver: e.detail.event.sender,
+                                response: rsa.keys.public
+                            }, e.detail.event.sender);
+                            break;
+                    }
+                    break;
                 case 'encrypted-message':
-                    if (e.detail.event.receiver != session) break;
                     console.log(rsa.decrypt(e.detail.event.text, rsa.keys.private));
                     break;
             }
@@ -35,10 +32,12 @@ window.rsa = {
     setKeys: (regenerateKeys = false) => {
         if (typeof localStorage.getItem('jacesites.rsa.keys') === 'string' && !regenerateKeys) {
             rsa.keys = JSON.parse(localStorage.getItem('jacesites.rsa.keys'));
+            if (rsa.keys.public === null || rsa.keys.private === null) rsa.generateKeys();
         } else {
             rsa.generateKeys();
-            localStorage.setItem('jacesites.rsa.keys', JSON.stringify(rsa.keys));
         }
+        if (rsa.keys.public === null || rsa.keys.private === null) return;
+        localStorage.setItem('jacesites.rsa.keys', JSON.stringify(rsa.keys));
     },
     requestKey: (user, callback) => {
         if (typeof rsa.knownPublicKeys[user] === 'string') {
@@ -59,12 +58,12 @@ window.rsa = {
         if (session === null) return;
         rsa.requestKey(user, (key) => {
             if (typeof key === 'string') {
-                Events.send({
+                Users.send({
                     type: 'encrypted-message',
                     receiver: user,
                     sender: session,
                     text: rsa.encrypt(text, key)
-                });
+                }, user);
             } else {
                 console.error('cannot get encryption key');
             }

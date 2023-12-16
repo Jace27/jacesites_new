@@ -4,7 +4,8 @@ window.Events = {
     init: () => {
         Echo.channel('public-events')
             .listen('PublicEvent', (e) => {
-                console.log(e);
+                if (e.id !== null && Events.has(e.id)) return;
+                console.log({channel: 'public-events', event: e});
                 try {
                     e.event = JSON.parse(e.event);
                     Events.add(e);
@@ -17,10 +18,10 @@ window.Events = {
             let time = Formatter.time_format(e.detail.timestamp);
             switch (e.detail.event.type) {
                 case 'user-login':
-                    Events.display(e.detail.event.name+' в сети', null, time);
+                    Events.display.add(e.detail.event.name+' в сети', null, time);
                     break;
                 case 'user-logout':
-                    Events.display(e.detail.event.name+' вышел из сети', null, time);
+                    Events.display.add(e.detail.event.name+' вышел из сети', null, time);
                     break;
             }
         });
@@ -34,35 +35,69 @@ window.Events = {
     add: (event) => {
         Events.events.push(event);
     },
-    display: (title, text = null, time = null, timeout = 5000, background = 'white', callback = null) => {
-        $('.event-popup').each((i, e) => {
-            $(e).animate({
-                bottom: '+='+($(e).height()+10),
+    has: (id) => {
+        let result = Events.events.find((item, index, array) => {
+            return item.id === id;
+        });
+        return typeof result !== 'undefined';
+    },
+
+    display: {
+        queue: [],
+        count: () => {
+            let count = 0;
+            $('.event-popup').each((i, e) => {
+                if ($(e).css('opacity') > 0) count++;
             });
-        });
-        let popup = $('<div class="event-popup" style="background: '+background+'">\n' +
-            '    <div class="event-popup__header">\n' +
-            '        <div class="event-popup__header__title">'+title+'</div>\n' +
-            (time !== null ? '        <div class="event-popup__header__time">'+time+'</div>\n' : '') +
-            '    </div>\n' +
-            (text !== null ? '    <div class="event-popup__content">'+text+'</div>\n' : '') +
-            '</div>');
-        $('body').append(popup);
-        popup.animate({
-            bottom: 10,
-        }, 1000, () => {
-            let func = () => {
-                popup.animate({
-                    opacity: 0,
-                }, 1000, () => {
-                    popup.remove();
+            return count;
+        },
+        add: (title, text = null, time = null, timeout = 5000, background = 'white', callback = null) => {
+            if (Events.display.count() >= 5) {
+                Events.display.queue.push({
+                    title: title, text: text, time: time, timeout: timeout,
+                    background: background, callback: callback
                 });
-            };
-            if (timeout !== null) {
-                setTimeout(func, timeout);
-            } else {
-                callback(func);
+                return;
             }
-        });
+            let popup = $(
+                '<div class="event-popup" style="background: ' + background + '">\n' +
+                '    <div class="event-popup__header">\n' +
+                '        <div class="event-popup__header__title">' + title + '</div>\n' +
+                (time !== null ?
+                    '        <div class="event-popup__header__time">' + time + '</div>\n' : '') +
+                '    </div>\n' +
+                (text !== null ?
+                    '    <div class="event-popup__content">' + text + '</div>\n' : '') +
+                '</div>'
+            );
+            let wrapper = $('.event-popup-wrapper');
+            let old_top = $(window).height() - wrapper.height();
+            wrapper.append(popup);
+            wrapper.css('top', old_top + 'px');
+            wrapper.animate({
+                top: $(window).height() - wrapper.height(),
+            }, 1000, () => {
+                let func = () => Events.display.remove(popup);
+                if (timeout !== null) {
+                    setTimeout(func, timeout);
+                } else {
+                    callback(func);
+                }
+            });
+        },
+        remove: (popup) => {
+            popup.animate({
+                opacity: 0,
+            }, 1000, () => {
+                if (Events.display.queue.length > 0) {
+                    let next = Events.display.queue.splice(0, 1)[0];
+                    Events.display.add(next.title, next.text, next.time, next.timeout, next.background, next.callback);
+                }
+                if (Events.display.count() < 1) {
+                    $('.event-popup').remove();
+                    $('.event-popup-wrapper').css('top', $(window).height() + 'px');
+                }
+            });
+        }
     }
 }
