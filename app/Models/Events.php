@@ -101,7 +101,7 @@ class Events extends Model
     {
         if (is_null($user)) $user = auth()->user();
         if (is_null($user)) return;
-        $this->seenBy()->attach($user->id);
+        $this->seenBy()->attach($user->id, ['created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]);
     }
 
     public static function fire(int $type = 0, array $data = [], string $eventClass = PublicEvent::class, ?User $user = null, bool $important = false)
@@ -116,10 +116,9 @@ class Events extends Model
         $event->data = json_encode($data, JSON_UNESCAPED_UNICODE);
         $event->important = $important;
         $event->save();
+        $event->see($user);
 
-        event(new $eventClass($user->id, $event->data, $event->id));
-
-        $event->seenBy()->attach($user->id, ['created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]);
+        event(new $eventClass($user?->id, $event->data, $event->id));
     }
 
     public static function fireUnseenImportant(?User $user = null)
