@@ -41,7 +41,7 @@
         @else
             <div class="nav">
                 <div style="color: #007bff; font-weight: 700; border-radius: 1.5em; background-color: white;"><a
-                        href="/dream_diary/new/" class="nav-item nav-link">Новый сон</a></div>
+                        href="/dream/new/" class="nav-item nav-link">Новый сон</a></div>
                 <div style="color: #007bff; font-weight: 700; border-radius: 1.5em; background-color: white; margin-left: 1em;">
                     <a href="/dreammap/{{ $user->name }}" class="nav-item nav-link">Моя карта</a></div>
             </div>

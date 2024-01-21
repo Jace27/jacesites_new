@@ -14,28 +14,33 @@ use Illuminate\Support\Facades\View;
 |
 */
 
-Route::get('/', function () { return view('index'); });
-Route::get('/about', function () { return view('about'); })->name('about');
-Route::get('/about/terms', function () { return view('terms'); })->name('terms');
-Route::get('/dreammap', function () { return view('dreammap'); })->name('dreammap');
-Route::get('/challenges', function () { return view('challenges'); })->name('challenges');
+Route::get('/',             function () { return view('index'); });
+Route::get('/about',        function () { return view('about'); })->name('about');
+Route::get('/about/terms',  function () { return view('terms'); })->name('terms');
+Route::get('/dreammap',     function () { return view('dreammap'); })->name('dreammap');
+Route::get('/challenges',   function () { return view('challenges'); })->name('challenges');
 Route::get('/competitions', function () { return view('competitions'); })->name('competitions');
-Route::get('/pmcalcs', function () { return view('pmcalcs'); })->name('pmcalcs');
+Route::get('/pmcalcs',      function () { return view('pmcalcs'); })->name('pmcalcs');
 
-Route::get('/profile', function () { return view('profile', ['requested_user' => null]); })->name('profile');
-Route::get('/profile/{user}', function (string $user) { return view('profile', ['requested_user' => $user]); });
+Route::get('/profile',          function () { return view('profile', ['requested_user' => null]); })->name('profile');
+Route::get('/profile/{user}',   function (string $user) { return view('profile', ['requested_user' => $user]); });
 
-Route::get('/articles', function () { return view('articles', ['slug' => null]); })->name('articles');
-Route::get('/article/{slug}', function (string $slug) { return view('articles', ['slug' => $slug]); });
+Route::get('/dream/new',        function () { return view('dreams.new'); });
+Route::get('/dream/{id}',       function (int $id) { return view('dreams.view', ['dream_id' => $id]); });
+Route::get('/dream/{id}/edit',  function (int $id) { return view('dreams.edit', ['dream_id' => $id]); });
+Route::get('/dreams',           function () { return view('dreams.index'); })->name('dreams');
 
-Route::get('/library', function () { return view('library', ['slug' => null]); })->name('library');
-Route::get('/library/{slug}', function (string $slug) { return view('library', ['slug' => $slug]); });
+Route::get('/articles',         function () { return view('articles', ['slug' => null]); })->name('articles');
+Route::get('/article/{slug}',   function (string $slug) { return view('articles', ['slug' => $slug]); });
 
-Route::get('/saves', function () { return view('saves'); })->name('saves');
-Route::get('/save/{save}', function (string $save) { return view('saves.'.$save); });
+Route::get('/library',          function () { return view('library', ['slug' => null]); })->name('library');
+Route::get('/library/{slug}',   function (string $slug) { return view('library', ['slug' => $slug]); });
 
-Route::get('/practicals', function () { return view('practicals'); })->name('practicals');
-Route::get('/practical/{practical}', function (string $practical) { return view('practicals.'.$practical); });
+Route::get('/saves',        function () { return view('saves'); })->name('saves');
+Route::get('/save/{save}',  function (string $save) { return view('saves.'.$save); });
+
+Route::get('/practicals',           function () { return view('practicals'); })->name('practicals');
+Route::get('/practical/{practical}',function (string $practical) { return view('practicals.'.$practical); });
 
 Route::get('/kk_notes', function () { return view('kk_notes', ['slug' => null]); })->name('kk_notes');
 Route::get('/kk_notes/{slug}', function (string $slug) {
@@ -52,8 +57,8 @@ Route::get('/kk_notes/{slug}', function (string $slug) {
     return view('kk_notes', ['slug' => $slug]);
 });
 
-Route::get('/login', function () { return redirect('/'); })->name('login');
-Route::get('/profile', function () { return view('profile'); })->middleware('auth')->name('profile');
+Route::get('/login',    function () { return redirect('/'); })->name('login');
+Route::get('/profile',  function () { return view('profile'); })->middleware('auth')->name('profile');
 
 Route::get('/tools/randomizer', function () { return view('tools.randomizer'); });
-Route::get('/tools/minipaint', function () { return view('tools.minipaint'); });
+Route::get('/tools/minipaint',  function () { return view('tools.minipaint'); });

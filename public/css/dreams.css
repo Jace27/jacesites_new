@@ -3,5 +3,15 @@
 #images img:hover { background-color: red; opacity: .5; }
 .tags { display: flex; flex-direction: row; flex-wrap: wrap; }
 .tags > * { margin: 5px; }
-.tag-style { display: flex; flex-direction: row; background-color: #007bff; border-radius: 14px; font-size: 14px; color: white; padding: .25rem; }
-.tag img { cursor: pointer; }
+.tag-style { display: flex; flex-direction: row; background-color: #007bff; border-radius: 14px; font-size: 14px; color: white; padding: .25rem .5rem; }
+.tag { cursor: pointer; }
+.tags__suggestions {
+    position: absolute;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: .25rem;
+    background-color: white;
+    z-index: 2;
+    display: none;
+}

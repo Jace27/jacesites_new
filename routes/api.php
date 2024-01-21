@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/login', [\App\Http\Controllers\UserController::class, 'authenticate']);
-Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [Controllers\UserController::class, 'authenticate']);
+Route::get('/logout', [Controllers\UserController::class, 'logout'])->name('logout');
 
-Route::post('/user/avatar/upload', [\App\Http\Controllers\UserController::class, 'avatarUpload']);
-Route::post('/user/options/change', [\App\Http\Controllers\UserController::class, 'optionsChange']);
-Route::get('/user/{id}/password-flush', [\App\Http\Controllers\UserController::class, 'passwordFlush']);
+Route::post('/user/avatar/upload', [Controllers\UserController::class, 'avatarUpload']);
+Route::post('/user/options/change', [Controllers\UserController::class, 'optionsChange']);
+Route::get('/user/{id}/password-flush', [Controllers\UserController::class, 'passwordFlush']);
 
-Route::post('/events/public', [\App\Http\Controllers\EventController::class, 'publicEvent']);
-Route::post('/events/user', [\App\Http\Controllers\EventController::class, 'userEvent']);
-Route::get('/events/get-unseen-important', [\App\Http\Controllers\EventController::class, 'getUnseenImportantEvents']);
+Route::post('/events/public', [Controllers\EventController::class, 'publicEvent']);
+Route::post('/events/user', [Controllers\EventController::class, 'userEvent']);
+Route::get('/events/get-unseen-important', [Controllers\EventController::class, 'getUnseenImportantEvents']);
+
+Route::post('/media/upload', [Controllers\MediaController::class, 'imageUpload']);
+Route::post('/media/temp/delete', [Controllers\MediaController::class, 'deleteTemp']);
+Route::post('/file/upload', [Controllers\MediaController::class, 'fileUpload']);
+
+Route::post('/dream/add', [App\Http\Controllers\DreamDiaryController::class, 'add']);
+Route::post('/dream/{id}/edit', [App\Http\Controllers\DreamDiaryController::class, 'edit']);
+Route::post('/dream/tags/search', [App\Http\Controllers\DreamDiaryController::class, 'searchTags']);

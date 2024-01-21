@@ -22,9 +22,12 @@ Route::group([
     $router->resource('kk-notes-redirects', \App\Admin\Controllers\KkNotesRedirectsController::class);
     $router->resource('books', \App\Admin\Controllers\BooksController::class);
     $router->resource('articles', \App\Admin\Controllers\ArticlesController::class);
-    $router->resource('dreams-locations-types', \App\Admin\Controllers\DreamsLocationsTypesController::class);
-    $router->resource('dreams-locations', \App\Admin\Controllers\DreamsLocationsController::class);
     $router->resource('option-pages', \App\Admin\Controllers\OptionPagesController::class);
     $router->resource('options', \App\Admin\Controllers\OptionsController::class);
+
+    $router->resource('dreams-locations-types', \App\Admin\Controllers\DreamsLocationsTypesController::class);
+    $router->resource('dreams-locations', \App\Admin\Controllers\DreamsLocationsController::class);
+    $router->resource('dream-diary-tag-groups', \App\Admin\Controllers\DreamDiaryTagGroupsController::class);
+    $router->resource('dream-diary-tags', \App\Admin\Controllers\DreamDiaryTagsController::class);
 
 });
