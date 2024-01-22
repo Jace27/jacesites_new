@@ -92,4 +92,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(OptionsValues::class, 'user_id');
     }
+
+    public function dream_records(): HasMany
+    {
+        return $this->hasMany(DreamDiaryRecords::class, 'user_id');
+    }
+
+    public function dreammap_locations(): HasMany
+    {
+        return $this->hasMany(MapLocations::class, 'user_id');
+    }
 }

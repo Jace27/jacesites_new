@@ -36,3 +36,6 @@ Route::post('/file/upload', [Controllers\MediaController::class, 'fileUpload']);
 Route::post('/dream/add', [App\Http\Controllers\DreamDiaryController::class, 'add']);
 Route::post('/dream/{id}/edit', [App\Http\Controllers\DreamDiaryController::class, 'edit']);
 Route::post('/dream/tags/search', [App\Http\Controllers\DreamDiaryController::class, 'searchTags']);
+
+Route::get('/dreammap/load/{user}', [App\Http\Controllers\DreamMapController::class, 'loadMap']);
+Route::post('/dreammap/save', [App\Http\Controllers\DreamMapController::class, 'saveMap']);
