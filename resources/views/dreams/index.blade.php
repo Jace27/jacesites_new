@@ -22,8 +22,8 @@
     <div class="text-block mt-3" id="page">
         @php
             $user = \Illuminate\Support\Facades\Auth::user();
-            $paginator = \App\Models\DreamdiaryRecords::query()->orderByDesc('date')->paginate(10, ['*'], 'page');
-            /** @var \App\Models\DreamdiaryRecords $dream */
+            $paginator = \App\Models\DreamDiaryRecords::query()->orderByDesc('date')->paginate(10, ['*'], 'page');
+            /** @var \App\Models\DreamDiaryRecords $dream */
         @endphp
         @foreach($paginator as $dream)
             @if($dream->hidden == 0 || ($user != null && $user->id == $dream->user_id))
