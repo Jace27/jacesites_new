@@ -1,0 +1,11 @@
+[22-Jan-2024 22:49:35 Europe/Moscow] PHP Fatal error:  Uncaught Symfony\Component\HttpKernel\Exception\NotFoundHttpException in /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1243
+Stack trace:
+#0 /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(45): Illuminate\Foundation\Application->abort(404, '', Array)
+#1 /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(1015): abort(404)
+#2 /home/d76696/public_html/php8.jacesites.ru/app/Exceptions/Handler.php(36): view('errors.404')
+#3 /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(217): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#4 /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(194): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(254): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#7 {main}
+  thrown in /home/d76696/public_html/php8.jacesites.ru/vendor/laravel/framework/src/Illuminate/Foundation/Application.php on line 1243
