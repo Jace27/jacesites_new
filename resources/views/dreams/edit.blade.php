@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    @php $dream = \App\Models\DreamdiaryRecords::whereId($dream_id ?? null)->first(); @endphp
+    @php $dream = \App\Models\DreamDiaryRecords::whereId($dream_id ?? null)->first(); @endphp
 
     <div class="text-block mt-3">
         <form action="/api/dream/add" method="post" enctype="multipart/form-data">

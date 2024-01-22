@@ -2,7 +2,7 @@
 
 @php
     $user = \Illuminate\Support\Facades\Auth::user();
-    $dream = \App\Models\DreamdiaryRecords::whereId($dream_id ?? null)->first();
+    $dream = \App\Models\DreamDiaryRecords::whereId($dream_id ?? null)->first();
     $page_header = $dream->user->name.' ';
     if($dream->date != null && $dream->date != '') $page_header = $page_header.date('d.m.Y', strtotime($dream->date));
     $page_header = $page_header.' - '.$dream->title;
