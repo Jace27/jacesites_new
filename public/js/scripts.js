@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $('.btn-download', null).click(() => {
+    $('.btn-download', null).click((e) => {
         let link = document.createElement('a');
         link.target = '_blank';
-        link.href = this.dataset.fileLink;
+        link.href = e.target.dataset.fileLink;
         link.style = 'display: none;';
         document.body.appendChild(link);
         link.click();
