@@ -1,4 +1,6 @@
 /.phpunit.cache
+/public/.htaccess
+/public/error_log
 /public/build
 /public/hot
 /public/storage
@@ -18,3 +20,5 @@ yarn-error.log
 /.osp
 /.vscode
 /node_modules
+/.ftpquota
+/error_log
