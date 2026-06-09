@@ -17,5 +17,11 @@
                 <span class="mt-auto mb-auto ml-2">Исследование Костра (13.11.2017 - 05.12.2017)</span>
             </a>
         </div>
+        <div class="d-flex flex-row p-2">
+            <a href="/save/tarot" class="text-decoration-none">
+                <img src="/images/saves/tarot.jpg" class="rounded-circle" style="max-height: 50px;">
+                <span class="mt-auto mb-auto ml-2">Гадание на картах Таро (08.05.2026 - до сих пор)</span>
+            </a>
+        </div>
     </div>
 @endsection
