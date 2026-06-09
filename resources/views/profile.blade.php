@@ -173,7 +173,7 @@
                     </table>
                     <div class="d-flex flex-row justify-content-center pt-1">
                         @if($can_edit)
-                            <button class="btn btn-danger btn-flush-password mr-3">Сбросить пароль</button>
+{{--                            <button class="btn btn-danger btn-flush-password mr-3">Сбросить пароль</button>--}}
                             <button class="btn btn-primary btn-save-changes">Сохранить изменения</button>
                         @endif
                     </div>
