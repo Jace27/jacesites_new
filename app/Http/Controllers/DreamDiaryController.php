@@ -226,9 +226,10 @@ class DreamDiaryController extends Controller
         $query = mb_strtolower($validated['search']);
         $found = DreamDiaryRecords::query()
             ->when(!is_null($user), function (Builder $builder) use ($query, $user) {
-                return $builder
-                    ->where('user_id', $user->id)
+                return $builder->where(function (Builder $builder) use ($query, $user) {
+                    return $builder->where('user_id', $user->id)
                     ->orWhere('hidden', false);
+                });
             })
             ->when(is_null($user), function (Builder $builder) use ($query, $user) {
                 return $builder->where('hidden', 0);
