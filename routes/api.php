@@ -39,3 +39,5 @@ Route::post('/dream/tags/search', [App\Http\Controllers\DreamDiaryController::cl
 
 Route::get('/dreammap/load/{user}', [App\Http\Controllers\DreamMapController::class, 'loadMap']);
 Route::post('/dreammap/save', [App\Http\Controllers\DreamMapController::class, 'saveMap']);
+
+Route::post('/search/dreams', [App\Http\Controllers\DreamDiaryController::class, 'searchDreams']);

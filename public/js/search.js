@@ -11,7 +11,7 @@ $(document).ready(function(){
         search($('input[name=search]').val().trim());
     });
 });
-function search(text){
+window.search = (text) => {
     if (text != ''){
         $('#search-results').html('<h3>Загрузка...</h3>');
         let search = text.toLowerCase();
@@ -41,8 +41,29 @@ function search(text){
                     if (data.status == 'success'){
                         $('#search-results').html('<div>Найдено: '+data.results.length+'</div>');
                         data.results.forEach(function(element, index, array){
-                            $('#search-results').append(element);
+                            let html =
+                                '<div class="m-2 p-2 search-result" style="border: 1px solid gray; border-radius: 10px;"' +
+                                '     onclick="window.location.assign(\'/dream/'+element.id+'\')">' +
+                                '    <a href="/dream/'+element.id+'"><b>' +
+                                element.user?.name + '&nbsp;' + element.date + '&nbsp;-&nbsp;' + element.title +
+                                '    </b></a>' +
+                                (element.hidden == 1 ? '<span style="color: dimgray">Сон скрыт</span>' : '') +
+                                '    <div class="d-flex flex-row flex-wrap">';
+                            element.tags.forEach(function (tag) {
+                                html += '<div class="tag-style m-1">'+tag+'</div>';
+                            });
+                            html += '</div></div>';
+                            $('#search-results').append(html);
                         });
+
+                        $('.tag-style').css('cursor', 'pointer');
+                        $('.tag-style').unbind('click');
+                        $('.tag-style').click(function (e) {
+                            e.stopPropagation();
+                            $('input[name=search]').val($(this).text());
+                            window.search($(this).text());
+                        });
+
                         if (data.results.length == 0){
                             $('#search-results').html('<h2>Ничего не найдено</h2>');
                         }

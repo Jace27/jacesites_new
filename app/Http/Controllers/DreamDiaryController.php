@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DreamDiaryRecordImages;
 use App\Models\DreamDiaryRecords;
 use App\Models\DreamDiaryTags;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Http\Request;
 
@@ -204,6 +206,58 @@ class DreamDiaryController extends Controller
         return [
             'status' => 'success',
             'data' => $tags,
+        ];
+    }
+
+    public function searchDreams(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'search' => 'required|string|max:255',
+            ]);
+        } catch (\Throwable $ex) {
+            return [
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ];
+        }
+        /** @var ?User $user */
+        $user = auth()->user();
+        $query = mb_strtolower($validated['search']);
+        $found = DreamDiaryRecords::query()
+            ->when(!is_null($user), function (Builder $builder) use ($query, $user) {
+                return $builder
+                    ->where('user_id', $user->id)
+                    ->orWhere('hidden', false);
+            })
+            ->when(is_null($user), function (Builder $builder) use ($query, $user) {
+                return $builder->where('hidden', 0);
+            })
+            ->where(function (Builder $builder) use ($query, $user) {
+                return $builder
+                    ->whereRaw("lower(`title`) like '%$query%'")
+                    ->orWhereRaw("lower(`description`) like '%$query%'")
+                    ->orWhereHas('tags', function (Builder $builder) use ($query) {
+                        return $builder->whereRaw("lower(`name`) like '%$query%'");
+                    });
+            })
+            ->get();
+        $data = [];
+        foreach ($found as $record) {
+            $data[] = [
+                'id' => $record->id,
+                'user_id' => $record->user_id,
+                'user' => $record->user ? ['name' => $record->user->name] : null,
+                'hidden' => $record->hidden,
+                'title' => $record->title,
+                'description' => $record->description,
+                'date' => is_string($record->date) ? date('d.m.Y', strtotime($record->date)) : null,
+                'tags' => $record->tags->pluck('name')->toArray(),
+            ];
+        }
+        return [
+            'status' => 'success',
+            'results' => $data,
         ];
     }
 }
