@@ -45,7 +45,7 @@ window.search = (text) => {
                                 '<div class="m-2 p-2 search-result" style="border: 1px solid gray; border-radius: 10px;"' +
                                 '     onclick="window.location.assign(\'/dream/'+element.id+'\')">' +
                                 '    <a href="/dream/'+element.id+'"><b>' +
-                                element.user?.name + '&nbsp;' + element.date + '&nbsp;-&nbsp;' + element.title +
+                                element.user?.name + (element.date ? '&nbsp;' + element.date : '') + '&nbsp;-&nbsp;' + element.title +
                                 '    </b></a>' +
                                 (element.hidden == 1 ? '<span style="color: dimgray">Сон скрыт</span>' : '') +
                                 '    <div class="d-flex flex-row flex-wrap">';
