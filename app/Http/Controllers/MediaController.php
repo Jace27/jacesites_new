@@ -12,11 +12,16 @@ class MediaController extends Controller
         $existed = scandir($_SERVER['DOCUMENT_ROOT'].'/images/temp');
         $uploaded = [];
         foreach ($files as $file){
+            try {
             if (strpos($file->getMimeType(), 'image/') == 0){
                 $name = time().'_'.rand().'.png';
                 while(in_array($name, $uploaded) || in_array($name, $existed)) $name = time().'_'.rand().'.png';
                 move_uploaded_file($file->getRealPath(), $_SERVER['DOCUMENT_ROOT'].'/images/temp/'.$name);
                 $uploaded[] = $name;
+            }
+            } catch (\Throwable $ex) {
+                http_response_code(500);
+                return ['status' => 'error', 'file' => $file, 'file_real_path' => $file->getRealPath()];
             }
         }
         return ['status' => 'success', 'files' => $uploaded];

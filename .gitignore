@@ -1,5 +1,7 @@
 /.phpunit.cache
 /public/.htaccess
+/public/.user.ini
+/public/php.ini
 /public/error_log
 /public/build
 /public/hot

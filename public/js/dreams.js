@@ -161,6 +161,7 @@ $(document).ready(() => {
         }
     });
 
+    let currentTime = -1;
     let handler = (e) => {
         let query = $.trim($(e.currentTarget).val());
         if (query == '') {
@@ -168,6 +169,8 @@ $(document).ready(() => {
             tagsSuggestions.html('');
             return;
         }
+        let localTime = (new Date()).getMilliseconds();
+        currentTime = localTime;
         let data = new FormData();
         data.append('query', $(e.currentTarget).val());
         ajax({
@@ -175,6 +178,7 @@ $(document).ready(() => {
             method: 'post',
             data: data,
             success: (data) => {
+                if (currentTime !== localTime) return;
                 if (data.status == 'success') {
                     tagsSuggestions.html('');
                     $.each(data.data, (key, tag) => {
@@ -185,6 +189,7 @@ $(document).ready(() => {
                     } else {
                         tagsSuggestions.css('display', 'none');
                     }
+                    currentTime = -1;
                     reset_handlers();
                 } else if (data.status == 'error') {
                     show_message('Ошибка', data.message);

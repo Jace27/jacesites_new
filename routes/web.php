@@ -59,6 +59,8 @@ Route::get('/kk_notes/{slug}', function (string $slug) {
         );
         return abort(404);
     }
+    if (!\App\Models\KkNotes::whereActive(true)->whereSlug($slug)->first())
+        return abort(404);
     return view('kk_notes', ['slug' => $slug]);
 });
 
