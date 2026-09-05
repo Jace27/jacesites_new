@@ -170,7 +170,7 @@ function ScrollToElement(element, callback) {
         - Math.max((available - height) / 2, padding)
         - headerHeight;
     var scrollTopMax = html.offsetHeight - scrollHeight;
-    ScrollTo(Math.min(desired, scrollTopMax), callback);
+    ScrollTo(desired, callback);
 }
 
 function GoToMessage(messageId) {
