@@ -33,9 +33,9 @@ class Handler extends ExceptionHandler
         if ($this->isHttpException($e)) {
             switch ($e->getStatusCode()) {
                 case '404':
-                    return response(view('errors.404'));
+                    return response(view('errors.404'), 404);
                 case '500':
-                    return response(view('errors.500'));
+                    return response(view('errors.500'), 500);
                 default:
                     return parent::render($request, $e);
             }
