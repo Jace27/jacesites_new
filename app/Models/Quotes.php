@@ -43,13 +43,9 @@ class Quotes extends Model
 
     public static function getNext()
     {
-        $quotes = Quotes::query()
-            ->whereNot('showed_at', '=', Quotes::query()->max('showed_at'))
-            ->orWhereNull('showed_at')
-            ->get();
-        $quote = $quotes[rand(0, count($quotes) - 1)];
-        $quote->update([ 'showed_at' => date('Y-m-d H:i:s', time()) ]);
+        $quote = Quotes::query()->inRandomOrder()->first();
+        $quote?->update([ 'showed_at' => date('Y-m-d H:i:s', time()) ]);
 
-        return $quote->quote;
+        return $quote?->quote ?? '';
     }
 }
